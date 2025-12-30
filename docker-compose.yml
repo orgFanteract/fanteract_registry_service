@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  registry:
+    image: fanteract-registry:latest
+    container_name: fanteract-registry
+
+    env_file:
+      - .env
+
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+      SERVER_PORT: ${SERVER_PORT}
+      SPRING_APPLICATION_NAME: ${SPRING_APPLICATION_NAME}
+
+      EUREKA_CLIENT_REGISTER_WITH_EUREKA: "false"
+      EUREKA_CLIENT_FETCH_REGISTRY: "false"
+      EUREKA_SERVER_ENABLE_SELF_PRESERVATION: "false"
+
+    ports:
+      - "8761:8761"
+
+    restart: always
